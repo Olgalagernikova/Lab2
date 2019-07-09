@@ -31,6 +31,7 @@ public class Main {
             while(i<store.length)
             {
                 store[i].create();
+                i++;
             }
 
              /*int numAct;
@@ -103,8 +104,6 @@ public class Main {
             orders.addOrder(order1);
             orders.addOrder(order2);
 
-            orders.showAllOrders();
-            orders.checkOrders();
             orders.showAllOrders();
             //orders.makePurchase(0);
 
