@@ -27,15 +27,15 @@ public class Credentails {
         patronicName=PatronicName.values()[i].toString();
 
         i=(int)(Math.random()*(Email.values().length));
-        email=firstName+lastName+'@'+ Email.values()[i].toString();
+        email=firstName+lastName+'@'+ Email.values()[i].toString() +".ru";
     }
 
     public void getinfo(){
-        System.out.println(ID);
-        System.out.println(lastName);
-        System.out.println(firstName);
-        System.out.println(patronicName);
-        System.out.println(email);
+        System.out.println("ID покупателя:"+ID);
+        System.out.println("Фамилия покупателя:"+lastName);
+        System.out.println("Имя покупателя:"+firstName);
+        System.out.println("Отчество покупателя:"+patronicName);
+        System.out.println("Email покупателя:"+email);
     }
 
 

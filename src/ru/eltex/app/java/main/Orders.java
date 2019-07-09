@@ -10,6 +10,11 @@ public class Orders {
         ordersList=new LinkedList<>();
     }
 
+    public void addOrder(Order order){
+        ordersList.add(order);
+    }
+
+    //оформить покупку
     public void makePurchase(int i) {
         ordersList.get(i).getCustomer().getinfo();//выводим информацию о покупателе
 
@@ -20,6 +25,7 @@ public class Orders {
         //выводим список товаров и конечную стоимость покупки
         int cartSize=ordersList.get(i).getCustomerCart().getShopList().size();
         for(int j=0;j<cartSize;j++){
+            System.out.println("Товар №"+ (j+1));
            prod= ordersList.get(i).getCustomerCart().getShopList().get(j);
            finalPrice+=prod.getPrice();
            prod.read();
@@ -31,6 +37,7 @@ public class Orders {
 
     public void showAllOrders(){
         for(int i=0;i<ordersList.size();i++) {
+            System.out.println("Заказ № "+(i+1));
             ordersList.get(i).showOrder();
         }
     }

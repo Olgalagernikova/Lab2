@@ -70,6 +70,34 @@ public class Main {
 
             }
 
+            Credentails buyer1= new Credentails();
+            ShoppingCart shoppingCart1=new ShoppingCart();
+
+            Credentails buyer2= new Credentails();
+            ShoppingCart shoppingCart2=new ShoppingCart();
+
+            int l;
+            for(l=0;l<store.length-1;l++)
+            {
+                shoppingCart1.add(store[l]);
+            }
+
+            shoppingCart2.add(store[l]);
+
+            //shoppingCart.showShopList();
+            Order order1= new Order(buyer1,shoppingCart1);
+            //order1.showOrder();
+
+            Order order2= new Order(buyer2,shoppingCart2);
+            //order2.showOrder();
+
+            Orders orders=new Orders();
+            orders.addOrder(order1);
+            orders.addOrder(order2);
+
+            //orders.showAllOrders();
+            orders.makePurchase(0);
+
         }
     }
 }

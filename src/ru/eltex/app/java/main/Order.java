@@ -17,6 +17,13 @@ public class Order {
         waitingTime=6;
     }
 
+    public Order(Credentails credentails, ShoppingCart shoppingCart)
+    {
+        this();
+        customer=credentails;
+        customerCart=shoppingCart;
+    }
+
     public Credentails getCustomer() {
         return customer;
     }
@@ -28,6 +35,7 @@ public class Order {
 
     public void showOrder(){
         customer.getinfo();
+        System.out.println("Список покупок:");
         customerCart.showShopList();
     }
 }
