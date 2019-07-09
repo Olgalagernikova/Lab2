@@ -1,4 +1,4 @@
-package ru.eltex.app.java.main;
+package ru.eltex.app.java.lab2;
 
 public interface ICrudAction {
     void create();

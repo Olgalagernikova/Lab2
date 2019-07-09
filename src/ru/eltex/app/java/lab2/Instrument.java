@@ -1,46 +1,43 @@
-package ru.eltex.app.java.main;
+package ru.eltex.app.java.lab2;
 
 import java.util.Scanner;
-import java.lang.Math;
 
-public class Materials extends Product {
-    float strength;
+public class Instrument extends Product {
+    float power;
 
-    public Materials(){
+    public Instrument(){
         super();
     }
 
-    public Materials(String message){
+    public Instrument(String message){
         this();
         System.out.println(message);
-
     }
 
     public void getType()
     {
-        System.out.println("Materials");
+        System.out.println("Instrument");
     }
-
-
     @Override
     public void create(){
         super.create();
-        strength=(float)(Math.random() * 1000);
+        power=(float)(Math.random()*5000);
     }
 
     @Override
     public void read(){
         super.read();
-        System.out.println("Прочность: " + strength);
+        System.out.println("Мощность: " + power);
     }
 
     @Override
     public void update(){
         super.update();
+
         Scanner sc=new Scanner(System.in);
-        System.out.println("Введите прочность материала: ");
+        System.out.print("Введите мощность инструмента: ");
         if(sc.hasNextFloat()) {
-            strength = sc.nextFloat();
+            power = sc.nextFloat();
 
         } else {
             System.out.println("Неверный формат!");
@@ -50,6 +47,7 @@ public class Materials extends Product {
     @Override
     public void delete(){
         super.delete();
-        strength=0;
+        power=0;
     }
+
 }

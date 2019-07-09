@@ -1,4 +1,4 @@
-package ru.eltex.app.java.main;
+package ru.eltex.app.java.lab2;
 
 import java.util.Scanner;
 
@@ -26,11 +26,18 @@ public class Main {
                 }
             }
 
-            int numAct;
+
+            int i=0;
+            while(i<store.length)
+            {
+                store[i].create();
+            }
+
+             /*int numAct;
             Scanner sc = new Scanner(System.in);
 
 
-            int i=0;
+           int i=0;
             boolean flag=true;
             while(i<store.length && flag)
             {
@@ -68,7 +75,7 @@ public class Main {
                 }
                 else flag=false;
 
-            }
+            }*/
 
             Credentails buyer1= new Credentails();
             ShoppingCart shoppingCart1=new ShoppingCart();
@@ -80,6 +87,7 @@ public class Main {
             for(l=0;l<store.length-1;l++)
             {
                 shoppingCart1.add(store[l]);
+
             }
 
             shoppingCart2.add(store[l]);
@@ -95,8 +103,10 @@ public class Main {
             orders.addOrder(order1);
             orders.addOrder(order2);
 
-            //orders.showAllOrders();
-            orders.makePurchase(0);
+            orders.showAllOrders();
+            orders.checkOrders();
+            orders.showAllOrders();
+            //orders.makePurchase(0);
 
         }
     }

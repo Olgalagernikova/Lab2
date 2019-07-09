@@ -1,4 +1,4 @@
-package ru.eltex.app.java.main;
+package ru.eltex.app.java.lab2;
 
 import ru.eltex.app.java.help.Email;
 import ru.eltex.app.java.help.FirstName;
