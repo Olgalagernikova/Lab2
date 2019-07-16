@@ -1,6 +1,12 @@
-package ru.eltex.app.java.lab2;
+package ru.eltex.app.java.lab3;
 
-import java.util.Scanner;
+
+import ru.eltex.app.java.lab2.Credentails;
+import ru.eltex.app.java.lab2.Product;
+import ru.eltex.app.java.lab2.Paint;
+import ru.eltex.app.java.lab2.Instrument;
+import ru.eltex.app.java.lab2.Materials;
+
 
 public class Main {
 
@@ -34,10 +40,10 @@ public class Main {
             }
 
             Credentails buyer1 = new Credentails();
-            ShoppingCart shoppingCart1 = new ShoppingCart();
+            ShoppingCart<Product> shoppingCart1 = new ShoppingCart<>();
 
             Credentails buyer2 = new Credentails();
-            ShoppingCart shoppingCart2 = new ShoppingCart();
+            ShoppingCart<Product> shoppingCart2 = new ShoppingCart<>();
 
             int l;
             for (l = 0; l < store.length - 1; l++) {
@@ -47,20 +53,22 @@ public class Main {
 
             shoppingCart2.add(store[l]);
 
-            //shoppingCart.showShopList();
-            Order order1 = new Order(buyer1, shoppingCart1);
-            //order1.showOrder();
+           // shoppingCart1.showShopList();
+            Order order1 = new Order(buyer1,shoppingCart1);
+            order1.showOrder();
 
             Order order2 = new Order(buyer2, shoppingCart2);
             //order2.showOrder();
 
-            Orders orders = new Orders();
+            Orders<Order> orders = new Orders<>();
             orders.addOrder(order1);
             orders.addOrder(order2);
 
-            //orders.showAllOrders();
-            orders.makePurchase(0);
 
+           // orders.showAllOrders();
+           // orders.makePurchase(0);
+           // orders.deleteOrder(1);
+           // orders.showAllOrders();
         }
     }
 }
