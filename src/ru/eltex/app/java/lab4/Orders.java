@@ -1,36 +1,38 @@
-package ru.eltex.app.java.lab3;
+package ru.eltex.app.java.lab4;
 
 import ru.eltex.app.java.help.OrderStatus;
 import ru.eltex.app.java.lab2.Product;
+import ru.eltex.app.java.lab3.Order;
 
 import java.util.Date;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 
 public class Orders<T extends Order> {
     private LinkedList<T> ordersList;
-    private LinkedHashMap<Date,Order> orderMap;
+    private LinkedHashMap<Date, Order> orderMap;
 
     public Orders() {
 
         ordersList = new LinkedList<>();
-        orderMap= new LinkedHashMap<>();
+        orderMap = new LinkedHashMap<>();
     }
 
     public void addOrder(T order) {
         ordersList.add(order);
-        orderMap.put(order.getCreationDate(),order);
+        orderMap.put(order.getCreationDate(), order);
     }
 
     public LinkedList<T> getOrdersList() {
         return ordersList;
     }
 
-    public void deleteOrder(T order){
+    public void deleteOrder(T order) {
         ordersList.remove(order);
     }
 
-    public void deleteOrder(int index){
+    public void deleteOrder(int index) {
         ordersList.remove(index);
 
     }
@@ -46,38 +48,56 @@ public class Orders<T extends Order> {
         return -1;
     }
 
-
-
-    //проверка заказов
-    public void checkOrders() {
-
-        //long currentMilliseconds = new Date().getTime();
+    synchronized public void checkTime() {
         Date checkDate = new Date(System.currentTimeMillis());
         Date nowDate;
         long wait;
-        Long waitTime =Long.valueOf(0);
+        Long waitTime = Long.valueOf(0);
+        Iterator <T> iterator= ordersList.iterator();
+        int counter = 0;
+        T ord;
+        while (iterator.hasNext()) {
+            ord=iterator.next();
 
-        for (int i = 0; i < ordersList.size(); i++) {
-            if (ordersList.get(i).getStatus()== OrderStatus.DONE.toString()) {
-                ordersList.remove(i);
-            } else {
-                ordersList.get(i).getOrderTime(checkDate, waitTime);
+            if (ord.getStatus() == OrderStatus.WAIT.toString()) {
+
+                ord.getOrderTime(checkDate, waitTime);
                 nowDate = new Date();
                 wait = nowDate.getTime() - checkDate.getTime();
 
-                if (wait >  (waitTime.longValue() )) {
-                    ordersList.get(i).setStatus(OrderStatus.DONE.toString());
+                if (wait > (waitTime.longValue())) {
+                    ord.setStatus(OrderStatus.DONE.toString());
+                    counter++;
                 }
             }
         }
+        System.out.println("Orders checked wait: " + counter);
+    }
 
+
+    //проверка заказов
+    synchronized public void checkStatus() {
+        int pS = ordersList.size();
+        Iterator <T> iterator= ordersList.iterator();
+        T ord;
+       while (iterator.hasNext()) {
+            if (iterator.next().getStatus() == OrderStatus.DONE.toString()) {
+                synchronized (ordersList) {
+                    iterator.remove();
+                }
+            }
+
+        }
+        synchronized (ordersList) {
+            System.out.println("Orders checked done: " + (pS - ordersList.size()));
+        }
     }
 
 
     //оформить покупку
     public void makePurchase(int i) {
         ordersList.get(i).getCustomer().getinfo();//выводим информацию о покупателе
-        orderMap.put(ordersList.get(i).getCreationDate(),ordersList.get(i));
+        orderMap.put(ordersList.get(i).getCreationDate(), ordersList.get(i));
         Product prod;
         float finalPrice = 0;
         System.out.println("Список товаров:");

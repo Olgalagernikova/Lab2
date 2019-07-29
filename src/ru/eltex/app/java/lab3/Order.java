@@ -33,6 +33,13 @@ public class Order {
         customerCart=shoppingCart;
     }
 
+
+
+    public void offer(Credentails credentails, ShoppingCart<Product> shoppingCart){
+        customer=credentails;
+        customerCart=shoppingCart;
+    }
+
     public String getStatus(){
         return status;
     }
